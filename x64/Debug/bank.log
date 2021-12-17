@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\studyC\bank\main.cpp(18,6): warning C4101: 'flg' :참조되지 않은 지역 변수입니다.
+  bank.vcxproj -> C:\studyC\bank\x64\Debug\bank.exe
