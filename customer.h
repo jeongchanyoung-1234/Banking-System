@@ -17,7 +17,7 @@ public:
 	// setter
 	void SetInfo(int accountId, char* name, int accountBalance);
 	// utils
-	void AddBalance(int money);
+	int AddBalance(int money);
 	void ShowCustomerInfo(void) const;
 	// deconstructor
 	~Customer();

@@ -33,9 +33,14 @@ void Customer::SetInfo(int accountId, char* name, int accountBalance)
 }
 
 // utils
-void Customer::AddBalance(int money)
+int Customer::AddBalance(int money)
 {
+	if (accountBalance + money < 0)
+	{
+		return 2;
+	}
 	accountBalance += money;
+	return 0;
 }
 void Customer::ShowCustomerInfo(void) const
 {

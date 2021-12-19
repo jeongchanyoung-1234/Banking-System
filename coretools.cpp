@@ -45,8 +45,7 @@ void deposit(void)
 	{
 		if (customerInfo[i].GetId() == id)
 		{
-			customerInfo[i].AddBalance(amount);
-			flg = 0;
+			flg = customerInfo[i].AddBalance(amount);
 			break;
 		}
 	}
@@ -76,13 +75,7 @@ void withdraw(void)
 	{
 		if (customerInfo[i].GetId() == id)
 		{
-			if (customerInfo[i].GetBalance() >= amount)
-			{
-				customerInfo[i].AddBalance(-amount);
-				flg = 0;
-				break;
-			}
-			flg = 2;
+			flg = customerInfo[i].AddBalance(-amount);
 			break;
 		}
 	}
