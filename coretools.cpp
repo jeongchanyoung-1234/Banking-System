@@ -7,22 +7,22 @@ using std::cin;
 using std::endl;
 
 extern int num_customers;
-extern Customer customerInfo[100];
+extern Customer customerInfo[10];
 
 void open_account(void)
 {
-	Customer customer;
+	int accountId;
+	char name[20];
+	int accountBalance;
 
 	cout << "[계좌개설]" << endl << "계좌ID: ";
-	cin >> customer.accountId;
-
+	cin >> accountId;
 	cout << "이 름: ";
-	cin >> customer.name;
-
+	cin >> name;
 	cout << "입금액: ";
-	cin >> customer.accountBalance;
+	cin >> accountBalance;
 
-	customerInfo[num_customers++] = customer;
+	customerInfo[num_customers++].SetInfo(accountId, name, accountBalance);
 
 	cout << "계좌 개설이 완료되었습니다.\n" << endl;
 }
@@ -43,10 +43,10 @@ void deposit(void)
 
 	for (int i = 0; i < num_customers; i++)
 	{
-		if (customerInfo[i].accountId == id)
+		if (customerInfo[i].GetId() == id)
 		{
-			customerInfo[i].accountBalance += amount;
-			flg = 1;
+			customerInfo[i].AddBalance(amount);
+			flg = 0;
 			break;
 		}
 	}
@@ -74,11 +74,11 @@ void withdraw(void)
 
 	for (int i = 0; i < num_customers; i++)
 	{
-		if (customerInfo[i].accountId == id)
+		if (customerInfo[i].GetId() == id)
 		{
-			if (customerInfo[i].accountBalance >= amount)
+			if (customerInfo[i].GetBalance() >= amount)
 			{
-				customerInfo[i].accountBalance -= amount;
+				customerInfo[i].AddBalance(-amount);
 				flg = 0;
 				break;
 			}
@@ -91,15 +91,5 @@ void withdraw(void)
 	case 0: cout << "출금이 완료되었습니다.\n\n"; break;
 	case 1: cout << "존재하지 않는 ID입니다.\n\n"; break;
 	case 2: cout << "잔액이 부족합니다.\n\n"; break;
-	}
-}
-
-void list_customer(void)
-{
-	for (int i = 0; i < num_customers; i++)
-	{
-		cout << "계좌ID: " << customerInfo[i].accountId << endl;
-		cout << "이 름: " << customerInfo[i].name << endl;
-		cout << "잔액: " << customerInfo[i].accountBalance << endl << endl;
 	}
 }

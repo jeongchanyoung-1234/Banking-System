@@ -41,7 +41,8 @@ int main(void)
 			withdraw(); 
 			break;
 		case LIST: 
-			list_customer(); 
+			for (int i = 0; i < num_customers; i++)
+				customerInfo[i].ShowCustomerInfo();
 			break;
 		case QUIT:
 			cout << "이용해주셔서 감사합니다." << endl;

@@ -1,3 +1,7 @@
-﻿  main.cpp
+﻿  coretools.cpp
+  customer.cpp
+C:\studyC\bank\customer.cpp(27,28): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  main.cpp
 C:\studyC\bank\main.cpp(18,6): warning C4101: 'flg' :참조되지 않은 지역 변수입니다.
+  코드를 생성하고 있습니다...
   bank.vcxproj -> C:\studyC\bank\x64\Debug\bank.exe
