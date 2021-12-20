@@ -7,6 +7,15 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+// Constructor
+Customer::Customer() {};
+Customer::Customer(const Customer& copy)
+	:accountId(copy.accountId), accountBalance(copy.accountBalance)
+{
+	name = new char[strlen(copy.name) + 1];
+	strcpy(name, copy.name);
+}
+
 // getter
 int Customer::GetId(void) const
 {

@@ -10,6 +10,8 @@ private:
 	int accountBalance;
 
 public:
+	Customer();
+	Customer(const Customer& copy);
 	// getter
 	int GetId(void) const;
 	char* GetName(void) const;
