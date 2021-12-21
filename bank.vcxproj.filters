@@ -18,7 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="coretools.cpp">
+    <ClCompile Include="handler.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="customer.cpp">
@@ -29,7 +29,7 @@
     <ClInclude Include="customer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="coretools.h">
+    <ClInclude Include="handler.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

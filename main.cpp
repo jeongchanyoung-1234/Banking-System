@@ -1,7 +1,11 @@
+/*
+Banking System v0.5
+*/
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "customer.h"
-#include "coretools.h"
+#include "handler.h"
 
 using std::cout;
 using std::cin;
@@ -12,33 +16,25 @@ enum { OPEN = 1, DEPOSIT, WITHDRAW, LIST, QUIT };
 int main(void)
 {
 	int option;
+	AccountHandler handler;
 
 	while (1)
 	{
-		cout << "-----Menu-----" << endl;
-		cout << "1. 계좌개설" << endl;
-		cout << "2. 입 금" << endl;
-		cout << "3. 출 금" << endl;
-		cout << "4. 계좌정보 전체 출력" << endl;
-		cout << "5. 프로그램 종료\n" << endl;
-		
-		cin >> option;
-		cout << "선택: " << option << endl << endl;
+		option = handler.ChooseOption();
 
 		switch (option)
 		{
 		case OPEN: 
-			open_account(); 
+			handler.OpenAccount();
 			break;
 		case DEPOSIT: 
-			deposit(); 
+			handler.Deposit();
 			break;
 		case WITHDRAW: 
-			withdraw(); 
+			handler.Withdraw();
 			break;
 		case LIST: 
-			for (int i = 0; i < Customer::num_customers; i++)
-				Customer::customerInfo[i].ShowCustomerInfo();
+			handler.ShowAllInfo();
 			break;
 		case QUIT:
 			cout << "이용해주셔서 감사합니다." << endl;
