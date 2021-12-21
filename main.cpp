@@ -7,15 +7,11 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-int num_customers = 0; // 전체 고객의 수
-Customer customerInfo[10]; // 고객 데이터를 관리하는 배열
-
 enum { OPEN = 1, DEPOSIT, WITHDRAW, LIST, QUIT };
 
 int main(void)
 {
 	int option;
-	int flg;
 
 	while (1)
 	{
@@ -41,8 +37,8 @@ int main(void)
 			withdraw(); 
 			break;
 		case LIST: 
-			for (int i = 0; i < num_customers; i++)
-				customerInfo[i].ShowCustomerInfo();
+			for (int i = 0; i < Customer::num_customers; i++)
+				Customer::customerInfo[i].ShowCustomerInfo();
 			break;
 		case QUIT:
 			cout << "이용해주셔서 감사합니다." << endl;

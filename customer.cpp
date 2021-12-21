@@ -7,6 +7,10 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+// static vars
+int Customer::num_customers = 0;
+Customer* Customer::customerInfo = new Customer[10];
+
 // Constructor
 Customer::Customer() {};
 Customer::Customer(const Customer& copy)

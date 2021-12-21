@@ -6,9 +6,6 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-extern int num_customers;
-extern Customer customerInfo[10];
-
 void open_account(void)
 {
 	int accountId;
@@ -22,7 +19,7 @@ void open_account(void)
 	cout << "입금액: ";
 	cin >> accountBalance;
 
-	customerInfo[num_customers++].SetInfo(accountId, name, accountBalance);
+	Customer::customerInfo[Customer::num_customers++].SetInfo(accountId, name, accountBalance);
 
 	cout << "계좌 개설이 완료되었습니다.\n" << endl;
 }
@@ -41,11 +38,11 @@ void deposit(void)
 		else break;
 	}
 
-	for (int i = 0; i < num_customers; i++)
+	for (int i = 0; i < Customer::num_customers; i++)
 	{
-		if (customerInfo[i].GetId() == id)
+		if (Customer::customerInfo[i].GetId() == id)
 		{
-			flg = customerInfo[i].AddBalance(amount);
+			flg = Customer::customerInfo[i].AddBalance(amount);
 			break;
 		}
 	}
@@ -71,11 +68,11 @@ void withdraw(void)
 		else break;
 	}
 
-	for (int i = 0; i < num_customers; i++)
+	for (int i = 0; i < Customer::num_customers; i++)
 	{
-		if (customerInfo[i].GetId() == id)
+		if (Customer::customerInfo[i].GetId() == id)
 		{
-			flg = customerInfo[i].AddBalance(-amount);
+			flg = Customer::customerInfo[i].AddBalance(-amount);
 			break;
 		}
 	}

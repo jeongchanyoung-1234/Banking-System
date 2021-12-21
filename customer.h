@@ -10,6 +10,9 @@ private:
 	int accountBalance;
 
 public:
+	static int num_customers;
+	static Customer* customerInfo;
+
 	Customer();
 	Customer(const Customer& copy);
 	// getter
