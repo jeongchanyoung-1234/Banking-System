@@ -1,11 +1,16 @@
 #pragma once
-#include "customer.h"
+#include "account.h"
 
+/*
+이름: AccountHandler
+유형: 기능 클래스
+*/
 class AccountHandler
 {
 private:
-	Customer* customers;
-	int NumCustomer;
+	Account** accounts;
+	int NumAccount;
+	enum ACCOUNT_TYPE {NORMAL = 1, HIGH_CREDIT};
 public:
 	AccountHandler();
 	int ChooseOption(void) const;
