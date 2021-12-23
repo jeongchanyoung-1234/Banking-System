@@ -63,10 +63,6 @@ NormalAccount::NormalAccount(const int id, const char* name, const int balance, 
 	:Account(id, name, balance), interestRatio(interest)
 {};
 
-NormalAccount::NormalAccount(const NormalAccount& copy)
-	:Account(copy.GetId(), copy.GetName(), copy.GetBalance()), interestRatio(copy.GetInterestRatio())
-{};
-
 int NormalAccount::GetInterestRatio(void) const
 {
 	return interestRatio;
@@ -90,10 +86,6 @@ NormalAccount::~NormalAccount()
 // HighCreditAccount
 HighCreditAccount::HighCreditAccount(const int id, const char* name, const int balance, const int interest, const char credit)
 	: NormalAccount(id, name, balance, interest), credit(credit)
-{};
-
-HighCreditAccount::HighCreditAccount(const HighCreditAccount& copy)
-	:NormalAccount(copy.GetId(), copy.GetName(), copy.GetBalance(), copy.GetInterestRatio()), credit(copy.GetCredit())
 {};
 
 int HighCreditAccount::GetCredit(void) const

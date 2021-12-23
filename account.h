@@ -40,7 +40,6 @@ private:
 	int interestRatio;
 public:
 	NormalAccount(const int, const char*, const int, const int);
-	explicit NormalAccount(const NormalAccount&);
 	int GetInterestRatio(void) const;
 	virtual int AddBalance(int);
 	virtual void ShowAccountInfo(void) const;
@@ -57,7 +56,6 @@ private:
 	char credit;
 public:
 	HighCreditAccount(const int, const char*, const int, const int, const char);
-	explicit HighCreditAccount(const HighCreditAccount&);
 	int GetCredit(void) const;
 	virtual int AddBalance(int);
 	virtual void ShowAccountInfo(void) const;
