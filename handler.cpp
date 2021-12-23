@@ -1,11 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-#include "account.h"
 #include "handler.h"
-
-using std::cout;
-using std::cin;
-using std::endl;
 
 AccountHandler::AccountHandler()
 	:NumAccount(0)

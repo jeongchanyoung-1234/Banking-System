@@ -1,12 +1,5 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-#include <cstring>
 #include "account.h"
-#define ADD_INTEREST(interest)	money + (int)(Account::GetBalance() * ((double)(interest) / 100.0))
 
-using std::cin;
-using std::cout;
-using std::endl;
 
 
 // Account
@@ -81,10 +74,7 @@ int NormalAccount::GetInterestRatio(void) const
 
 int NormalAccount::AddBalance(int money)
 {
-	int res = Account::AddBalance(
-		//money + (int)(Account::GetBalance() * ((double)interestRatio / 100.))
-		ADD_INTEREST(interestRatio)
-	);
+	int res = Account::AddBalance(DEPOSIT_ADD_INTEREST(interestRatio));
 	return res;
 }
 
@@ -122,10 +112,7 @@ int HighCreditAccount::AddBalance(int money)
 	}
 
 	int newInterestRatio = NormalAccount::GetInterestRatio() + creditInterest;
-	int res = Account::AddBalance(
-		//money + (int)(Account::GetBalance() * ((double)newInterestRatio / 100.0))
-		ADD_INTEREST(newInterestRatio)
-	);
+	int res = Account::AddBalance(DEPOSIT_ADD_INTEREST(newInterestRatio));
 	return res;
 }
 

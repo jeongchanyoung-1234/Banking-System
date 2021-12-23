@@ -2,17 +2,7 @@
 Banking System v0.6
 작성자: 정찬영
 */
-
-#define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-#include "account.h"
 #include "handler.h"
-
-using std::cout;
-using std::cin;
-using std::endl;
-
-enum { OPEN = 1, DEPOSIT, WITHDRAW, LIST, QUIT };
 
 int main(void)
 {
