@@ -20,14 +20,16 @@ private:
 	int balance;
 public:
 	Account(const int, const char*, const int);
-	explicit Account(const Account&);
+	Account(const Account&);
+	Account& operator=(const Account&);
+	virtual ~Account();
+
 	int GetId(void) const;
 	char* GetName(void) const;
 	int GetBalance(void) const;
 	virtual int AddBalance(int);
 	int SubBalance(int);
 	virtual void ShowAccountInfo(void) const;
-	virtual ~Account();
 };
 
 /*
@@ -40,10 +42,11 @@ private:
 	int interestRatio;
 public:
 	NormalAccount(const int, const char*, const int, const int);
+	~NormalAccount();
+
 	int GetInterestRatio(void) const;
 	virtual int AddBalance(int);
 	virtual void ShowAccountInfo(void) const;
-	~NormalAccount();
 };
 
 /*
@@ -56,8 +59,9 @@ private:
 	char credit;
 public:
 	HighCreditAccount(const int, const char*, const int, const int, const char);
+	~HighCreditAccount();
+
 	int GetCredit(void) const;
 	virtual int AddBalance(int);
 	virtual void ShowAccountInfo(void) const;
-	~HighCreditAccount();
 };

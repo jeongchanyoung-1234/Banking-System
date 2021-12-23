@@ -1,20 +1,29 @@
-#include "account.h"
+#include "Account.h"
 
 
-
-// Account
 Account::Account(const int id, const char* name, const int balance)
 	:id(id), balance(balance)
 {
 	this -> name = new char[strlen(name) + 1];
 	strcpy(this -> name, name);
-};
+}
 
 Account::Account(const Account& copy)
 	:id(copy.id), balance(copy.balance)
 {
 	name = new char[strlen(copy.name) + 1];
 	strcpy(name, copy.name);
+}
+
+Account& Account::operator=(const Account& ref)
+{
+	delete[] name;
+	id = ref.id;
+	name = new char[strlen(ref.name) + 1];
+	strcpy(name, ref.name);
+	balance = ref.balance;
+
+	return *this;
 }
 
 int Account::GetId(void) const
@@ -61,12 +70,12 @@ Account::~Account()
 // NormalAccount
 NormalAccount::NormalAccount(const int id, const char* name, const int balance, const int interest)
 	:Account(id, name, balance), interestRatio(interest)
-{};
+{}
 
 int NormalAccount::GetInterestRatio(void) const
 {
 	return interestRatio;
-};
+}
 
 int NormalAccount::AddBalance(int money)
 {
@@ -78,15 +87,15 @@ void NormalAccount::ShowAccountInfo(void) const
 {
 	Account::ShowAccountInfo();
 	cout << "ÀÌÀÚÀ²: " << interestRatio << "%" << endl;
-};
+}
 
 NormalAccount::~NormalAccount()
-{};
+{}
 
 // HighCreditAccount
 HighCreditAccount::HighCreditAccount(const int id, const char* name, const int balance, const int interest, const char credit)
 	: NormalAccount(id, name, balance, interest), credit(credit)
-{};
+{}
 
 int HighCreditAccount::GetCredit(void) const
 {
@@ -115,4 +124,4 @@ void HighCreditAccount::ShowAccountInfo(void) const
 }
 
 HighCreditAccount::~HighCreditAccount()
-{};
+{}

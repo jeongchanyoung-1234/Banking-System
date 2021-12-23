@@ -1,13 +1,15 @@
 /*
-Banking System v0.6
+Banking System v0.8
 작성자: 정찬영
 */
-#include "handler.h"
+#include "AccountHandler.h"
+#define MAX_LEN	10
+
 
 int main(void)
 {
 	int option;
-	AccountHandler handler;
+	AccountHandler handler(MAX_LEN);
 
 	while (1)
 	{
@@ -15,19 +17,19 @@ int main(void)
 
 		switch (option)
 		{
-		case OPEN: 
+		case AccountHandler::OPEN: 
 			handler.OpenAccount();
 			break;
-		case DEPOSIT: 
+		case AccountHandler::DEPOSIT: 
 			handler.Deposit();
 			break;
-		case WITHDRAW: 
+		case AccountHandler::WITHDRAW:
 			handler.Withdraw();
 			break;
-		case LIST: 
+		case AccountHandler::LIST:
 			handler.ShowAllInfo();
 			break;
-		case QUIT:
+		case AccountHandler::QUIT:
 			cout << "이용해주셔서 감사합니다." << endl;
 			return 0;
 		default: 

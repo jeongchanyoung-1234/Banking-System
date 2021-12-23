@@ -1,10 +1,8 @@
-#include "handler.h"
+#include "AccountHandler.h"
 
-AccountHandler::AccountHandler()
-	:NumAccount(0)
-{
-	accounts = new Account*[10];
-}
+AccountHandler::AccountHandler(int len)
+	:accounts(len), NumAccount(0)
+{}
 
 int AccountHandler::ChooseOption(void) const
 {
@@ -166,5 +164,6 @@ void AccountHandler::ShowAllInfo(void) const
 
 AccountHandler::~AccountHandler()
 {
-	delete[] accounts;
+	for (int i = 0; i < NumAccount; i++)
+		delete accounts[i];
 }
