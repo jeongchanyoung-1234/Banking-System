@@ -1,7 +1,7 @@
 #pragma once
-#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
+#include "String.h"
 #define DEPOSIT_ADD_INTEREST(interest)	money + (int)(Account::GetBalance() * ((double)(interest) / 100.0))
 
 using std::cin;
@@ -16,16 +16,15 @@ class Account
 {
 private:
 	int id;
-	char* name;
+	String name;
 	int balance;
 public:
-	Account(const int, const char*, const int);
+	Account(const int, const String, const int);
 	Account(const Account&);
 	Account& operator=(const Account&);
-	virtual ~Account();
 
 	int GetId(void) const;
-	char* GetName(void) const;
+	String GetName(void) const;
 	int GetBalance(void) const;
 	virtual int AddBalance(int);
 	int SubBalance(int);
@@ -41,8 +40,7 @@ class NormalAccount: public Account
 private:
 	int interestRatio;
 public:
-	NormalAccount(const int, const char*, const int, const int);
-	~NormalAccount();
+	NormalAccount(const int, const String, const int, const int);
 
 	int GetInterestRatio(void) const;
 	virtual int AddBalance(int);
@@ -58,8 +56,7 @@ class HighCreditAccount: public NormalAccount
 private:
 	char credit;
 public:
-	HighCreditAccount(const int, const char*, const int, const int, const char);
-	~HighCreditAccount();
+	HighCreditAccount(const int, const String, const int, const int, const char);
 
 	int GetCredit(void) const;
 	virtual int AddBalance(int);

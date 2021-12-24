@@ -1,4 +1,6 @@
 #include "AccountHandler.h"
+#include "String.h"
+
 
 AccountHandler::AccountHandler(int len)
 	:accounts(len), NumAccount(0)
@@ -36,7 +38,7 @@ void AccountHandler::OpenAccount(void)
 	*/
 
 	int id;
-	char name[20];
+	String name;
 	int balance;
 	int interest;
 	int type;

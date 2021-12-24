@@ -143,11 +143,13 @@
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="AccountPtrArray.cpp" />
+    <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccountPtrArray.h" />
     <ClInclude Include="AccountHandler.h" />
     <ClInclude Include="Account.h" />
+    <ClInclude Include="String.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

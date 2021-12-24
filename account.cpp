@@ -1,26 +1,19 @@
 #include "Account.h"
+#include "String.h"
 
 
-Account::Account(const int id, const char* name, const int balance)
-	:id(id), balance(balance)
-{
-	this -> name = new char[strlen(name) + 1];
-	strcpy(this -> name, name);
-}
+Account::Account(const int id, const String name, const int balance)
+	:id(id), name(name), balance(balance)
+{}
 
 Account::Account(const Account& copy)
-	:id(copy.id), balance(copy.balance)
-{
-	name = new char[strlen(copy.name) + 1];
-	strcpy(name, copy.name);
-}
+	:id(copy.id), name(copy.name), balance(copy.balance)
+{}
 
 Account& Account::operator=(const Account& ref)
 {
-	delete[] name;
 	id = ref.id;
-	name = new char[strlen(ref.name) + 1];
-	strcpy(name, ref.name);
+	name = ref.name;
 	balance = ref.balance;
 
 	return *this;
@@ -30,7 +23,7 @@ int Account::GetId(void) const
 {
 	return id;
 }
-char* Account::GetName(void) const
+String Account::GetName(void) const
 {
 	return name;
 }
@@ -62,13 +55,8 @@ void Account::ShowAccountInfo(void) const
 	cout << "잔액: " << balance << endl;
 }
 
-Account::~Account()
-{
-	delete[] name;
-}
-
 // NormalAccount
-NormalAccount::NormalAccount(const int id, const char* name, const int balance, const int interest)
+NormalAccount::NormalAccount(const int id, const String name, const int balance, const int interest)
 	:Account(id, name, balance), interestRatio(interest)
 {}
 
@@ -89,11 +77,8 @@ void NormalAccount::ShowAccountInfo(void) const
 	cout << "이자율: " << interestRatio << "%" << endl;
 }
 
-NormalAccount::~NormalAccount()
-{}
-
 // HighCreditAccount
-HighCreditAccount::HighCreditAccount(const int id, const char* name, const int balance, const int interest, const char credit)
+HighCreditAccount::HighCreditAccount(const int id, const String name, const int balance, const int interest, const char credit)
 	: NormalAccount(id, name, balance, interest), credit(credit)
 {}
 
@@ -122,6 +107,3 @@ void HighCreditAccount::ShowAccountInfo(void) const
 	NormalAccount::ShowAccountInfo();
 	cout << "신용도: " << credit << endl;
 }
-
-HighCreditAccount::~HighCreditAccount()
-{}
