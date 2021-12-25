@@ -1,7 +1,2 @@
-﻿  Account.cpp
-  AccountHandler.cpp
-  AccountPtrArray.cpp
-  String.cpp
-  main.cpp
-  코드를 생성하고 있습니다...
+﻿  main.cpp
   bank.vcxproj -> C:\studyC\bank\x64\Debug\bank.exe

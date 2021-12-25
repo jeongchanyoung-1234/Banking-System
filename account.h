@@ -1,12 +1,5 @@
 #pragma once
-#include <iostream>
-#include <cstring>
 #include "String.h"
-#define DEPOSIT_ADD_INTEREST(interest)	money + (int)(Account::GetBalance() * ((double)(interest) / 100.0))
-
-using std::cin;
-using std::cout;
-using std::endl;
 
 /*
 ¿Ã∏ß: Account

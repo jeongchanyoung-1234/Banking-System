@@ -1,6 +1,7 @@
 #pragma once
-#include "AccountPtrArray.h"
+#include "BoundCheckArray.h"
 
+typedef Account* ACC_PTR;
 
 /*
 ¿Ã∏ß: AccountHandler
@@ -9,7 +10,7 @@
 class AccountHandler
 {
 private:
-	AccountPtrArray accounts;
+	BoundCheckArray<ACC_PTR> accounts;
 	int NumAccount;
 	enum ACCOUNT_TYPE {NORMAL = 1, HIGH_CREDIT};
 public:

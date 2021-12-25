@@ -1,5 +1,11 @@
+#include <iostream>
+#include <cstring>
 #include "Account.h"
-#include "String.h"
+#define DEPOSIT_ADD_INTEREST(interest)	money + (int)(Account::GetBalance() * ((double)(interest) / 100.0))
+
+using std::cin;
+using std::cout;
+using std::endl;
 
 
 Account::Account(const int id, const String name, const int balance)

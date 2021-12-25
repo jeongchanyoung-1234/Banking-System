@@ -1,10 +1,13 @@
 /*
-Banking System v0.8
+Banking System v0.9
 작성자: 정찬영
 */
+#include <iostream>
 #include "AccountHandler.h"
 #define MAX_LEN	10
 
+using std::cout;
+using std::endl;
 
 int main(void)
 {

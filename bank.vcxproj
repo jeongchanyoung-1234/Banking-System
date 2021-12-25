@@ -142,11 +142,10 @@
     <ClCompile Include="AccountHandler.cpp" />
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="AccountPtrArray.cpp" />
     <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AccountPtrArray.h" />
+    <ClInclude Include="BoundCheckArray.h" />
     <ClInclude Include="AccountHandler.h" />
     <ClInclude Include="Account.h" />
     <ClInclude Include="String.h" />
