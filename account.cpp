@@ -38,20 +38,9 @@ int Account::GetBalance(void) const
 	return balance;
 }
 
-int Account::AddBalance(int money)
+void Account::AddBalance(int money)
 {
 	balance += money;
-	return 0;
-}
-
-int Account::SubBalance(int money)
-{
-	if (balance < money)
-	{
-		return 2;
-	}
-	balance -= money;
-	return 0;
 }
 
 void Account::ShowAccountInfo(void) const
@@ -71,10 +60,9 @@ int NormalAccount::GetInterestRatio(void) const
 	return interestRatio;
 }
 
-int NormalAccount::AddBalance(int money)
+void NormalAccount::AddBalance(int money)
 {
-	int res = Account::AddBalance(DEPOSIT_ADD_INTEREST(interestRatio));
-	return res;
+	Account::AddBalance(DEPOSIT_ADD_INTEREST(interestRatio));
 }
 
 void NormalAccount::ShowAccountInfo(void) const
@@ -93,7 +81,7 @@ int HighCreditAccount::GetCredit(void) const
 	return credit;
 }
 
-int HighCreditAccount::AddBalance(int money)
+void HighCreditAccount::AddBalance(int money)
 {
 	int creditInterest;
 	switch (credit)
@@ -104,8 +92,7 @@ int HighCreditAccount::AddBalance(int money)
 	}
 
 	int newInterestRatio = NormalAccount::GetInterestRatio() + creditInterest;
-	int res = Account::AddBalance(DEPOSIT_ADD_INTEREST(newInterestRatio));
-	return res;
+	Account::AddBalance(DEPOSIT_ADD_INTEREST(newInterestRatio));
 }
 
 void HighCreditAccount::ShowAccountInfo(void) const

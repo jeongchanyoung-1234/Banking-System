@@ -12,7 +12,7 @@ String::String()
 {
 	string = NULL;
 }
-String::String(const char* inputString)
+String::String(char* inputString)
 {
 	string = new char[strlen(inputString) + 1];
 	strcpy(string, inputString);
@@ -29,7 +29,7 @@ size_t String::getLen() const
 }
 String& String::operator=(const String& ref)
 {
-	if (ref.string != NULL)
+	if (string != NULL)
 		delete[] string;
 	string = new char[strlen(ref.string) + 1];
 	strcpy(string, ref.string);
@@ -83,7 +83,7 @@ istream& operator>>(istream& is, String& ref)
 {
 	if (ref.string != NULL)
 		delete[] ref.string;
-	char input[200];
+	char input[100];
 	cin >> input;
 	ref = String(input);
 	return is;

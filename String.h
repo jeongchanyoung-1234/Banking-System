@@ -14,7 +14,7 @@ private:
 	char* string;
 public:
 	String();
-	String(const char* inputString);
+	String(char* inputString);
 	String(const String& copy);
 
 	size_t getLen() const;

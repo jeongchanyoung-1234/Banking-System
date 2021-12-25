@@ -19,8 +19,7 @@ public:
 	int GetId(void) const;
 	String GetName(void) const;
 	int GetBalance(void) const;
-	virtual int AddBalance(int);
-	int SubBalance(int);
+	virtual void AddBalance(int);
 	virtual void ShowAccountInfo(void) const;
 };
 
@@ -36,7 +35,7 @@ public:
 	NormalAccount(const int, const String, const int, const int);
 
 	int GetInterestRatio(void) const;
-	virtual int AddBalance(int);
+	virtual void AddBalance(int);
 	virtual void ShowAccountInfo(void) const;
 };
 
@@ -52,6 +51,6 @@ public:
 	HighCreditAccount(const int, const String, const int, const int, const char);
 
 	int GetCredit(void) const;
-	virtual int AddBalance(int);
+	virtual void AddBalance(int);
 	virtual void ShowAccountInfo(void) const;
 };

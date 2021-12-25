@@ -148,6 +148,7 @@
     <ClInclude Include="BoundCheckArray.h" />
     <ClInclude Include="AccountHandler.h" />
     <ClInclude Include="Account.h" />
+    <ClInclude Include="Exception.h" />
     <ClInclude Include="String.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

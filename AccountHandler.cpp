@@ -1,5 +1,6 @@
 #include "AccountHandler.h"
 #include "String.h"
+#include "Exception.h"
 
 using std::cout;
 using std::cin;
@@ -20,14 +21,13 @@ int AccountHandler::ChooseOption(void) const
 	int option;
 
 	cout << "-----Menu-----" << endl;
-	cout << "1. 계좌개설" << endl;
-	cout << "2. 입 금" << endl;
-	cout << "3. 출 금" << endl;
-	cout << "4. 계좌정보 전체 출력" << endl;
-	cout << "5. 프로그램 종료\n" << endl;
+	cout << "(1) 계좌개설" << endl;
+	cout << "(2) 입 금" << endl;
+	cout << "(3) 출 금" << endl;
+	cout << "(4) 계좌정보 전체 출력" << endl;
+	cout << "(5) 프로그램 종료\n" << endl;
 
-	cin >> option;
-	cout << "선택: " << option << endl << endl;
+	cout << "[MESSAGE] 기능을 선택하세요: "; cin >> option; cout << endl;
 
 	return option;
 }
@@ -52,23 +52,47 @@ void AccountHandler::OpenAccount(void)
 
 	while (1)
 	{
-		cout << "선택 :"; cin >> type; cout << endl;
-		if (type == ACCOUNT_TYPE::NORMAL)
+		try
 		{
-			cout << "[보통예금계좌 개설]" << endl;
-			break;
+			cout << "선택 :"; cin >> type; cout << endl;
+			if (type == ACCOUNT_TYPE::NORMAL)
+			{
+				cout << "[보통예금계좌 개설]" << endl;
+				break;
+			}
+			else if (type == ACCOUNT_TYPE::HIGH_CREDIT)
+			{
+				cout << "[신용신뢰계좌 개설]" << endl;
+				break;
+			}
+			throw
+				AccountTypeError(type);
 		}
-		else if (type == ACCOUNT_TYPE::HIGH_CREDIT)
+		catch (AccountException& expn)
 		{
-			cout << "[신용신뢰계좌 개설]" << endl;
-			break;
+			expn.what();
 		}
-		cout << "잘못된 유형입니다." << endl;
 	}
-	cout << "계좌ID: "; cin >> id;
-	cout << "이 름: "; cin >> name;
-	cout << "입금액: "; cin >> balance;
-	cout << "이자율: "; cin >> interest;
+
+	while (1)
+	{
+		try
+		{
+			cout << "계좌ID: "; cin >> id;
+			if (CheckId(id) >= 0)
+				throw IdExistException(id);
+			cout << "이 름: "; cin >> name;
+			cout << "입금액: "; cin >> balance;
+			if (balance < 0)
+				throw LessThanZeroException(balance);
+			cout << "이자율: "; cin >> interest;
+			break;
+		}
+		catch (AccountException& expn)
+		{
+			expn.what();
+		}
+	}
 
 	if (type == ACCOUNT_TYPE::HIGH_CREDIT)
 	{
@@ -81,7 +105,7 @@ void AccountHandler::OpenAccount(void)
 	{
 		accounts[NumAccount++] = new NormalAccount(id, name, balance, interest);
 	}
-	cout << endl << "계좌 개설이 완료되었습니다.\n" << endl;
+	cout << endl << "[MESSAGE] 계좌 개설이 완료되었습니다.\n" << endl;
 }
 
 void AccountHandler::Deposit(void)
@@ -91,31 +115,45 @@ void AccountHandler::Deposit(void)
 	출력: NULL
 	기능: 입력된 계좌로 이자를 더하며 입금
 	*/
-	int id, amount, flg = 1;
+	int id, amount, idx;
 
 	cout << "[입    금]" << endl; 
-	cout << "계좌ID: "; cin >> id;
 	while (1)
 	{
-		cout << "입금액: "; cin >> amount;
-		if (amount <= 0) cout << "입금액이 0 이하입니다." << endl;
-		else break;
-	}
-
-	for (int i = 0; i < NumAccount; i++)
-	{
-		if (accounts[i] -> GetId() == id)
+		try
 		{
-			flg = accounts[i] -> AddBalance(amount);
+			cout << "계좌ID: "; cin >> id;
+			idx = CheckId(id);
+			if (idx < 0)
+				throw IdDoNotExistException(id);
 			break;
+		}
+		catch (IdDoNotExistException& expn)
+		{
+			expn.what();
 		}
 	}
 
-	switch (flg)
+	while (1)
 	{
-	case 0: cout << "입금이 완료되었습니다.\n\n"; break;
-	case 1: cout << "존재하지 않는 ID입니다.\n\n"; break;
+		try
+		{
+			cout << "입금액: "; cin >> amount;
+			if (amount <= 0)
+				throw LessThanZeroException(amount);
+
+			accounts[idx]->AddBalance(amount);
+			break;
+		}
+		catch (AccountException& expn)
+		{
+			expn.what();
+		}
 	}
+
+	cout << "[MESSAGE] 입금이 완료되었습니다." << endl;
+	accounts[idx]->ShowAccountInfo();
+	cout << endl;
 }
 
 void AccountHandler::Withdraw(void)
@@ -125,32 +163,50 @@ void AccountHandler::Withdraw(void)
 	출력: NULL
 	기능: 예치된 계좌로부터 출금
 	*/
-	int id, amount, flg = 1;
+	int id, amount, idx;
 
 	cout << "[출    금]" << endl;
-	cout << "계좌ID: "; cin >> id;
 	while (1)
 	{
-		cout << "출금액: "; cin >> amount;
-		if (amount <= 0) cout << "출금액이 0 이하입니다." << endl;
-		else break;
-	}
-
-	for (int i = 0; i < NumAccount; i++)
-	{
-		if (accounts[i] -> GetId() == id)
+		try
 		{
-			flg = accounts[i] -> SubBalance(amount);
+			cout << "계좌ID: "; cin >> id;
+			idx = CheckId(id);
+			if (idx < 0)
+				throw IdDoNotExistException(id);
 			break;
 		}
+		catch (IdDoNotExistException& expn)
+		{
+			expn.what();
+		}
 	}
-	switch (flg)
+
+	while (1)
 	{
-	case 0: cout << "출금이 완료되었습니다.\n\n"; break;
-	case 1: cout << "존재하지 않는 ID입니다.\n\n"; break;
-	case 2: cout << "잔액이 부족합니다.\n\n"; break;
+		try
+		{
+			cout << "출금액: "; cin >> amount;
+			if (amount <= 0)
+				throw LessThanZeroException(amount);
+
+			int balance = accounts[idx]->GetBalance();
+			if (balance < amount)
+				throw LackOfBalacneException(balance, amount);
+
+			accounts[idx]->AddBalance(-amount);
+			break;
+		}
+		catch (AccountException& expn)
+		{
+			expn.what();
+		}
 	}
-}
+
+	cout << "[MESSAGE] 출금이 완료되었습니다." << endl;
+	accounts[idx]->ShowAccountInfo();
+	cout << endl;
+};
 
 void AccountHandler::ShowAllInfo(void) const
 {
@@ -162,9 +218,19 @@ void AccountHandler::ShowAllInfo(void) const
 	for (int i = 0; i < NumAccount; i++)
 	{
 		cout << "====" << i + 1 << "====" << endl;
-		accounts[i] -> ShowAccountInfo();
+		accounts[i]->ShowAccountInfo();
 		cout << endl;
 	}
+};
+
+int AccountHandler::CheckId(int id) const
+{
+	for (int i = 0; i < NumAccount; i++)
+	{
+		if (accounts[i]->GetId() == id)
+			return i;
+	}
+	return -1;
 }
 
 AccountHandler::~AccountHandler()

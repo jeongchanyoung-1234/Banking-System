@@ -22,5 +22,6 @@ public:
 	void Deposit(void);
 	void Withdraw(void);
 	void ShowAllInfo(void) const;
+	int CheckId(int) const;
 	~AccountHandler();
 };
